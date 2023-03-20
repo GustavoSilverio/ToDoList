@@ -31,6 +31,7 @@ namespace ToDoList.Services
 
         public async Task<Tarefa> CriarTarefa(Tarefa tarefa)
         {
+            tarefa.IsDone = false;
             await _dbContext.AddAsync(tarefa);
             _dbContext.SaveChanges();
             
