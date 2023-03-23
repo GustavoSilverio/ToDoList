@@ -9,5 +9,6 @@ namespace ToDoList.Services
         Task<Tarefa> CriarTarefa(Tarefa tarefa);
         Task<Tarefa> AtualizarTask(int id, Tarefa tarefa);
         Task<Tarefa> ExcluirTarefa(int id);
+        Task<IEnumerable<Tarefa>> DeleteAll(int id);
     }
 }

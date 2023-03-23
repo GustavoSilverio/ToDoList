@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.DataProtection.KeyManagement.Internal;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using ToDoList.Models;
@@ -119,6 +120,19 @@ namespace ToDoList.Controllers
             {
                 return BadRequest(ex);
             }
+        }
+
+        [HttpDelete]
+        [Route("deleteall/{del}")]
+        public async Task<ActionResult<IAsyncEnumerable<Tarefa>>> DeleteAll(int del)
+        {
+            if(del == 1)
+            {
+                var tarefasDeletadas = await _tarefaService.DeleteAll(del);
+                return Ok(tarefasDeletadas);
+            }
+
+            else { throw new ArgumentException("Não foi possivel completar a função 'DeleteAll'");}
         }
     }
 }
