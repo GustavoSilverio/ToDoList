@@ -101,14 +101,14 @@ namespace ToDoList.Controllers
 
         [HttpDelete]
         [Route("excluir-task/{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             try
             {
                 if (id > 0)
                 {
-                    _tarefaService.ExcluirTarefa(id);
-                    return Ok(id);
+                    Tarefa tarefaExcluida = await _tarefaService.ExcluirTarefa(id);
+                    return Ok(tarefaExcluida);
                 }
                 else
                     throw new ArgumentException("O Id não pode ser nulo:", nameof(id));
