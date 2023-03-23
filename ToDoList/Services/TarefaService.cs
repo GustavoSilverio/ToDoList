@@ -74,5 +74,12 @@ namespace ToDoList.Services
 
         }
 
+        public async Task<IEnumerable<Tarefa>> DeleteAll(int id)
+        {
+            IEnumerable<Tarefa> tarefas = await ObterTodas();
+            _dbContext.RemoveRange(tarefas);
+            await _dbContext.SaveChangesAsync();
+            return tarefas;
+        }
     }
 }
